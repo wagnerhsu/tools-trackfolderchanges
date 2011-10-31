@@ -52,6 +52,9 @@ namespace TrackFolderChanges
             treeView1.Nodes.Clear();
             treeView1.Nodes.Add(CreateNode(rootFolder).Node);
             fileSystemWatcher.EnableRaisingEvents = true;
+
+            Program.WriteSetting("LastFolder", rootFolder);
+            treeView1.Focus();
         }
 
 
@@ -123,7 +126,10 @@ namespace TrackFolderChanges
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            TryUpdateTree(Environment.GetEnvironmentVariable("SystemDrive"));
+            var defaultFolder = Environment.GetEnvironmentVariable("SystemDrive");
+            var folder = Program.ReadSetting("LastFolder", defaultFolder);
+            if (Directory.Exists(folder)) TryUpdateTree(folder);
+            else TryUpdateTree(defaultFolder);
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -154,11 +160,6 @@ namespace TrackFolderChanges
             {
                 Program.ReportError(this, ex);
             }
-        }
-
-        private void treeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            OpenItem((ChangedFolder)e.Node.Tag);
         }
 
         private static void OpenItem(ChangedFolder folder)

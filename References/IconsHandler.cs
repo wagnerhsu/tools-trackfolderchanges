@@ -132,8 +132,8 @@ namespace Antiufo
             var sizeflag = large ? SHGFI_LARGEICON : SHGFI_SMALLICON;
 
             IntPtr hImg;
-            hImg = SHGetFileInfo(path, 0, ref shinfo, Marshal.SizeOf(shinfo), (SHGFI_ICON
-                            | (sizeflag | SHGFI_USEFILEATTRIBUTES)));
+            hImg = SHGetFileInfo(path, 0, ref shinfo, Marshal.SizeOf(shinfo), 
+                (SHGFI_ICON | sizeflag));
             var icon = System.Drawing.Icon.FromHandle(shinfo.hIcon);
             var image = icon.ToBitmap();
             DestroyIcon(shinfo.hIcon);
@@ -170,6 +170,9 @@ namespace Antiufo
         private const int SHGFI_SMALLICON = 0x1;
         private const int SHGFI_LARGEICON = 0x0;
         private const int SHGFI_USEFILEATTRIBUTES = 0x10;
+        private const int SHGFI_SYSICONINDEX = 0x4000;
+        private const int SHGFI_PIDL = 0x8;
+        private const int SHGFI_OPENICON = 0x2;
 
 
 
