@@ -110,7 +110,7 @@
             this.btnClose.Location = new System.Drawing.Point(615, 6);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 24);
-            this.btnClose.TabIndex = 2;
+            this.btnClose.TabIndex = 1;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -122,7 +122,7 @@
             this.btnClear.Location = new System.Drawing.Point(534, 6);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 24);
-            this.btnClear.TabIndex = 3;
+            this.btnClear.TabIndex = 0;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
@@ -145,7 +145,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(10, 5, 10, 10);
             this.panel2.Size = new System.Drawing.Size(697, 66);
-            this.panel2.TabIndex = 5;
+            this.panel2.TabIndex = 0;
             // 
             // MainForm
             // 
