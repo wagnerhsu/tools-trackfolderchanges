@@ -18,6 +18,8 @@ namespace TrackFolderChanges
             InitializeComponent();
             icons = new IconsHandler(true, false);
             treeView1.ImageList = icons.SmallIcons;
+
+            WindowPosition.InitWindowLocation(Program.ReadSetting("WindowPosition", null), this);
         }
 
         IconsHandler icons;
@@ -126,10 +128,12 @@ namespace TrackFolderChanges
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+
             var defaultFolder = Environment.GetEnvironmentVariable("SystemDrive");
             var folder = Program.ReadSetting("LastFolder", defaultFolder);
             if (Directory.Exists(folder)) TryUpdateTree(folder);
             else TryUpdateTree(defaultFolder);
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -237,6 +241,11 @@ namespace TrackFolderChanges
         {
             using (var form = new AboutForm())
                 form.ShowDialog(this);
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Program.WriteSetting("WindowPosition", WindowPosition.SerializePosition(this));
         }
 
 

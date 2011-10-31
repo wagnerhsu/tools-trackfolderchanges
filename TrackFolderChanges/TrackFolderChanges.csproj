@@ -56,6 +56,9 @@
     <Compile Include="..\References\IconsHandler.cs">
       <Link>IconsHandler.cs</Link>
     </Compile>
+    <Compile Include="..\References\WindowPosition.cs">
+      <Link>WindowPosition.cs</Link>
+    </Compile>
     <Compile Include="AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>

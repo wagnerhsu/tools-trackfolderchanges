@@ -38,13 +38,13 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAbout = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.contextMenu1 = new System.Windows.Forms.ContextMenu();
             this.cmdOpen = new System.Windows.Forms.MenuItem();
             this.cmdOpenLocation = new System.Windows.Forms.MenuItem();
-            this.cmdCopyPath = new System.Windows.Forms.MenuItem();
             this.menuItem4 = new System.Windows.Forms.MenuItem();
-            this.btnAbout = new System.Windows.Forms.Button();
+            this.cmdCopyPath = new System.Windows.Forms.MenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher)).BeginInit();
             this.grpFolder.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -145,6 +145,16 @@
             this.panel1.Size = new System.Drawing.Size(605, 39);
             this.panel1.TabIndex = 4;
             // 
+            // btnAbout
+            // 
+            this.btnAbout.Location = new System.Drawing.Point(10, 7);
+            this.btnAbout.Name = "btnAbout";
+            this.btnAbout.Size = new System.Drawing.Size(75, 23);
+            this.btnAbout.TabIndex = 2;
+            this.btnAbout.Text = "About...";
+            this.btnAbout.UseVisualStyleBackColor = true;
+            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.grpFolder);
@@ -175,26 +185,16 @@
             this.cmdOpenLocation.Text = "Open file location";
             this.cmdOpenLocation.Click += new System.EventHandler(this.cmdOpenLocation_Click);
             // 
-            // cmdCopyPath
-            // 
-            this.cmdCopyPath.Index = 3;
-            this.cmdCopyPath.Text = "Copy as path";
-            this.cmdCopyPath.Click += new System.EventHandler(this.cmdCopyPath_Click);
-            // 
             // menuItem4
             // 
             this.menuItem4.Index = 2;
             this.menuItem4.Text = "-";
             // 
-            // btnAbout
+            // cmdCopyPath
             // 
-            this.btnAbout.Location = new System.Drawing.Point(10, 7);
-            this.btnAbout.Name = "btnAbout";
-            this.btnAbout.Size = new System.Drawing.Size(75, 23);
-            this.btnAbout.TabIndex = 2;
-            this.btnAbout.Text = "About...";
-            this.btnAbout.UseVisualStyleBackColor = true;
-            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
+            this.cmdCopyPath.Index = 3;
+            this.cmdCopyPath.Text = "Copy as path";
+            this.cmdCopyPath.Click += new System.EventHandler(this.cmdCopyPath_Click);
             // 
             // MainForm
             // 
@@ -207,9 +207,10 @@
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.MinimumSize = new System.Drawing.Size(290, 0);
+            this.MinimumSize = new System.Drawing.Size(290, 38);
             this.Name = "MainForm";
             this.Text = "Track folder changes";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher)).EndInit();

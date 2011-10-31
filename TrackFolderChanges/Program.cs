@@ -30,7 +30,7 @@ namespace TrackFolderChanges
             ReportError(owner, exception.Message);
         }
 
-        private const string RegKey = "HKEY_CURRENT_USER\\antiufo\\TrackFolderChanges";
+        private const string RegKey = "HKEY_CURRENT_USER\\Software\\antiufo\\TrackFolderChanges";
 
         public static void WriteSetting(string name, object value)
         {
