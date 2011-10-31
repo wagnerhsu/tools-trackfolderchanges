@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System;
+using System.IO;
 
 namespace Antiufo
 {
@@ -125,20 +126,32 @@ namespace Antiufo
             ListView.LargeImageList = LargeIcons;
         }
 
-        public static Image GetIcon(string path, bool large)
-        {
 
+        private static Image GetIcon(string path, bool large, bool realFile)
+        {
             var shinfo = new SHFILEINFO();
-            var sizeflag = large ? SHGFI_LARGEICON : SHGFI_SMALLICON;
+            var flags = SHGFI_ICON;
+            flags |= large ? SHGFI_LARGEICON : SHGFI_SMALLICON;
+            if (!realFile) flags |= SHGFI_USEFILEATTRIBUTES;
 
             IntPtr hImg;
-            hImg = SHGetFileInfo(path, 0, ref shinfo, Marshal.SizeOf(shinfo), 
-                (SHGFI_ICON | sizeflag));
+            hImg = SHGetFileInfo(path, 0, ref shinfo, Marshal.SizeOf(shinfo), flags);
+
+            if (realFile && hImg == IntPtr.Zero)
+            {
+                return GetIcon(path, large, false);
+            }
+
             var icon = System.Drawing.Icon.FromHandle(shinfo.hIcon);
             var image = icon.ToBitmap();
             DestroyIcon(shinfo.hIcon);
             return image;
+        }
 
+        public static Image GetIcon(string path, bool large)
+        {
+            var isExtension = path.StartsWith(".");
+            return GetIcon(path, large, !isExtension);
         }
 
         [DllImport("shell32.dll")]
