@@ -184,6 +184,48 @@ namespace TrackFolderChanges
             }
         }
 
+        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && e.Node != null)
+            {
+                treeView1.SelectedNode = e.Node;
+                cmdOpen.Enabled = File.Exists(SelectedFolder.Path) || Directory.Exists(SelectedFolder.Path);
+                cmdOpenLocation.Enabled = Directory.GetParent(SelectedFolder.Path).Exists;
+                contextMenu1.Show(treeView1, e.Location);
+            }
+        }
+
+        private void cmdCopyPath_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText("\"" + SelectedFolder.Path + "\"");
+        }
+
+        private void cmdOpenLocation_Click(object sender, EventArgs e)
+        {
+            var path = SelectedFolder.Path;
+            if (File.Exists(path) || Directory.Exists(path))
+            {
+                Shell.OpenFolderAndSelectItem(path);
+            }
+            else
+            {
+                Shell.StartFolder(Directory.GetParent(path).FullName);
+            }
+        }
+
+        private void cmdOpen_Click(object sender, EventArgs e)
+        {
+            Shell.StartFile(SelectedFolder.Path);
+        }
+
+        private ChangedFolder SelectedFolder
+        {
+            get
+            {
+                if (treeView1.SelectedNode == null) return null;
+                return (ChangedFolder)treeView1.SelectedNode.Tag;
+            }
+        }
 
 
 

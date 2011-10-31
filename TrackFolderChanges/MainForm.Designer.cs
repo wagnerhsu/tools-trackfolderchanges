@@ -39,6 +39,11 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.contextMenu1 = new System.Windows.Forms.ContextMenu();
+            this.cmdOpen = new System.Windows.Forms.MenuItem();
+            this.cmdOpenLocation = new System.Windows.Forms.MenuItem();
+            this.cmdCopyPath = new System.Windows.Forms.MenuItem();
+            this.menuItem4 = new System.Windows.Forms.MenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher)).BeginInit();
             this.grpFolder.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -102,6 +107,7 @@
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(697, 385);
             this.treeView1.TabIndex = 1;
+            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
             // btnClose
             // 
@@ -147,6 +153,37 @@
             this.panel2.Size = new System.Drawing.Size(697, 66);
             this.panel2.TabIndex = 0;
             // 
+            // contextMenu1
+            // 
+            this.contextMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.cmdOpen,
+            this.cmdOpenLocation,
+            this.menuItem4,
+            this.cmdCopyPath});
+            // 
+            // cmdOpen
+            // 
+            this.cmdOpen.Index = 0;
+            this.cmdOpen.Text = "Open";
+            this.cmdOpen.Click += new System.EventHandler(this.cmdOpen_Click);
+            // 
+            // cmdOpenLocation
+            // 
+            this.cmdOpenLocation.Index = 1;
+            this.cmdOpenLocation.Text = "Open file location";
+            this.cmdOpenLocation.Click += new System.EventHandler(this.cmdOpenLocation_Click);
+            // 
+            // cmdCopyPath
+            // 
+            this.cmdCopyPath.Index = 3;
+            this.cmdCopyPath.Text = "Copy as path";
+            this.cmdCopyPath.Click += new System.EventHandler(this.cmdCopyPath_Click);
+            // 
+            // menuItem4
+            // 
+            this.menuItem4.Index = 2;
+            this.menuItem4.Text = "-";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -182,6 +219,11 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ContextMenu contextMenu1;
+        private System.Windows.Forms.MenuItem cmdOpen;
+        private System.Windows.Forms.MenuItem cmdOpenLocation;
+        private System.Windows.Forms.MenuItem menuItem4;
+        private System.Windows.Forms.MenuItem cmdCopyPath;
     }
 }
 
