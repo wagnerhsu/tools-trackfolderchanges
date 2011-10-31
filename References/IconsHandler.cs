@@ -134,8 +134,10 @@ namespace Antiufo
             flags |= large ? SHGFI_LARGEICON : SHGFI_SMALLICON;
             if (!realFile) flags |= SHGFI_USEFILEATTRIBUTES;
 
+            var isProbablyFolder = !realFile && string.IsNullOrEmpty(Path.GetExtension(path));
+
             IntPtr hImg;
-            hImg = SHGetFileInfo(path, 0, ref shinfo, Marshal.SizeOf(shinfo), flags);
+            hImg = SHGetFileInfo(path, isProbablyFolder ? FILE_ATTRIBUTE_DIRECTORY : 0, ref shinfo, Marshal.SizeOf(shinfo), flags);
 
             if (realFile && hImg == IntPtr.Zero)
             {
@@ -150,8 +152,8 @@ namespace Antiufo
 
         public static Image GetIcon(string path, bool large)
         {
-            var isExtension = path.StartsWith(".");
-            return GetIcon(path, large, !isExtension);
+            var dontSearchRealFile = path.StartsWith(".") || path.StartsWith("\\\\");
+            return GetIcon(path, large, !dontSearchRealFile);
         }
 
         [DllImport("shell32.dll")]
@@ -187,6 +189,7 @@ namespace Antiufo
         private const int SHGFI_PIDL = 0x8;
         private const int SHGFI_OPENICON = 0x2;
 
+        private const int FILE_ATTRIBUTE_DIRECTORY = 0x10;
 
 
         public void Dispose()

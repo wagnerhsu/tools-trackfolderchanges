@@ -24,8 +24,11 @@ namespace TrackFolderChanges
         {
             set
             {
-                _status = value;
-                Node.BackColor = GetColorForChangeType(value);
+                if (value != _status)
+                {
+                    _status = value;
+                    Node.BackColor = GetColorForChangeType(value);
+                }
             }
             get
             {

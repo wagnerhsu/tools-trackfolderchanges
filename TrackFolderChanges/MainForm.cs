@@ -62,6 +62,7 @@ namespace TrackFolderChanges
 
         private ChangedFolder CreateNode(string path)
         {
+            var oldTopNode = treeView1.TopNode;
             var name = Path.GetFileName(path);
             if (path.Equals(rootFolder, StringComparison.CurrentCultureIgnoreCase))
                 name = path;
@@ -69,6 +70,7 @@ namespace TrackFolderChanges
             nodes[path.ToLower()] = folder;
             folder.Node.ExpandAll();
             folder.Node.SelectedImageIndex = folder.Node.ImageIndex = icons.GetIcon(path);
+            treeView1.TopNode = oldTopNode;
             return folder;
         }
 
@@ -96,7 +98,6 @@ namespace TrackFolderChanges
 
             if (!(changeType == WatcherChangeTypes.Changed && folder.Status == WatcherChangeTypes.Created))
             {
-                var isDirectory = Directory.Exists(path);
                 folder.Status = changeType;
             }
             return folder;
