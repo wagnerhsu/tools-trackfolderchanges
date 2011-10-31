@@ -182,6 +182,12 @@ namespace TrackFolderChanges
                 e.Handled = true;
                 TryUpdateTree(rootFolder);
             }
+            if (e.KeyCode == Keys.F1)
+            {
+                e.Handled = true;
+                using (var form = new AboutForm())
+                    form.ShowDialog(this);
+            }
         }
 
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -225,6 +231,12 @@ namespace TrackFolderChanges
                 if (treeView1.SelectedNode == null) return null;
                 return (ChangedFolder)treeView1.SelectedNode.Tag;
             }
+        }
+
+        private void btnAbout_Click(object sender, EventArgs e)
+        {
+            using (var form = new AboutForm())
+                form.ShowDialog(this);
         }
 
 

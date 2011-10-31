@@ -44,6 +44,7 @@
             this.cmdOpenLocation = new System.Windows.Forms.MenuItem();
             this.cmdCopyPath = new System.Windows.Forms.MenuItem();
             this.menuItem4 = new System.Windows.Forms.MenuItem();
+            this.btnAbout = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher)).BeginInit();
             this.grpFolder.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -67,7 +68,7 @@
             this.grpFolder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpFolder.Location = new System.Drawing.Point(10, 5);
             this.grpFolder.Name = "grpFolder";
-            this.grpFolder.Size = new System.Drawing.Size(677, 51);
+            this.grpFolder.Size = new System.Drawing.Size(585, 51);
             this.grpFolder.TabIndex = 0;
             this.grpFolder.TabStop = false;
             this.grpFolder.Text = "Folder";
@@ -81,14 +82,14 @@
             this.edtFolder.FormattingEnabled = true;
             this.edtFolder.Location = new System.Drawing.Point(13, 18);
             this.edtFolder.Name = "edtFolder";
-            this.edtFolder.Size = new System.Drawing.Size(620, 23);
+            this.edtFolder.Size = new System.Drawing.Size(528, 23);
             this.edtFolder.TabIndex = 0;
             this.edtFolder.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edtFolder_KeyDown);
             // 
             // btnBrowse
             // 
             this.btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowse.Location = new System.Drawing.Point(639, 18);
+            this.btnBrowse.Location = new System.Drawing.Point(547, 18);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(32, 23);
             this.btnBrowse.TabIndex = 1;
@@ -105,7 +106,7 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(0, 66);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(697, 385);
+            this.treeView1.Size = new System.Drawing.Size(605, 336);
             this.treeView1.TabIndex = 1;
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
@@ -113,7 +114,7 @@
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnClose.Location = new System.Drawing.Point(615, 6);
+            this.btnClose.Location = new System.Drawing.Point(523, 6);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 24);
             this.btnClose.TabIndex = 1;
@@ -125,7 +126,7 @@
             // 
             this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnClear.Location = new System.Drawing.Point(534, 6);
+            this.btnClear.Location = new System.Drawing.Point(442, 6);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 24);
             this.btnClear.TabIndex = 0;
@@ -135,12 +136,13 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnAbout);
             this.panel1.Controls.Add(this.btnClear);
             this.panel1.Controls.Add(this.btnClose);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 451);
+            this.panel1.Location = new System.Drawing.Point(0, 402);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(697, 39);
+            this.panel1.Size = new System.Drawing.Size(605, 39);
             this.panel1.TabIndex = 4;
             // 
             // panel2
@@ -150,7 +152,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(10, 5, 10, 10);
-            this.panel2.Size = new System.Drawing.Size(697, 66);
+            this.panel2.Size = new System.Drawing.Size(605, 66);
             this.panel2.TabIndex = 0;
             // 
             // contextMenu1
@@ -184,17 +186,28 @@
             this.menuItem4.Index = 2;
             this.menuItem4.Text = "-";
             // 
+            // btnAbout
+            // 
+            this.btnAbout.Location = new System.Drawing.Point(10, 7);
+            this.btnAbout.Name = "btnAbout";
+            this.btnAbout.Size = new System.Drawing.Size(75, 23);
+            this.btnAbout.TabIndex = 2;
+            this.btnAbout.Text = "About...";
+            this.btnAbout.UseVisualStyleBackColor = true;
+            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(697, 490);
+            this.ClientSize = new System.Drawing.Size(605, 441);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.MinimumSize = new System.Drawing.Size(290, 0);
             this.Name = "MainForm";
             this.Text = "Track folder changes";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -224,6 +237,7 @@
         private System.Windows.Forms.MenuItem cmdOpenLocation;
         private System.Windows.Forms.MenuItem menuItem4;
         private System.Windows.Forms.MenuItem cmdCopyPath;
+        private System.Windows.Forms.Button btnAbout;
     }
 }
 

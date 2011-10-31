@@ -49,8 +49,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\References\BetterLinkLabel.cs">
+      <Link>BetterLinkLabel.cs</Link>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="..\References\IconsHandler.cs">
       <Link>IconsHandler.cs</Link>
+    </Compile>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ChangedFolder.cs" />
     <Compile Include="Shell.cs" />
@@ -62,6 +72,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
