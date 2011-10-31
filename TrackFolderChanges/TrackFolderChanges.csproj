@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\References\IconsHandler.cs">
+      <Link>IconsHandler.cs</Link>
+    </Compile>
     <Compile Include="ChangedFolder.cs" />
     <Compile Include="Shell.cs" />
     <Compile Include="MainForm.cs">

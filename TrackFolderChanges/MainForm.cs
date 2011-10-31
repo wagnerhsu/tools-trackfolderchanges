@@ -16,14 +16,18 @@ namespace TrackFolderChanges
         public MainForm()
         {
             InitializeComponent();
+            icons = new IconsHandler(true, false);
+            treeView1.ImageList = icons.SmallIcons;
         }
+
+        IconsHandler icons;
 
         private void btnBrowse_Click(object sender, EventArgs e)
         {
             folderBrowserDialog.SelectedPath = edtFolder.Text;
             if (folderBrowserDialog.ShowDialog(this) == DialogResult.OK)
             {
-                UpdateTree(folderBrowserDialog.SelectedPath);
+                TryUpdateTree(folderBrowserDialog.SelectedPath);
             }
         }
 
@@ -37,6 +41,7 @@ namespace TrackFolderChanges
             if (rootFolder.Length == 2 && rootFolder[1] == ':') rootFolder += '\\';
             rootFolder = Path.GetFullPath(rootFolder);
             if (rootFolder.Length > 3) rootFolder = rootFolder.Trim('\\');
+            rootFolder = char.ToUpper(rootFolder[0]) + rootFolder.Substring(1);
 
             this.rootFolder = rootFolder;
             edtFolder.Text = rootFolder;
@@ -58,6 +63,7 @@ namespace TrackFolderChanges
             var folder = new ChangedFolder(path, new TreeNode(name));
             nodes[path.ToLower()] = folder;
             folder.Node.ExpandAll();
+            folder.Node.SelectedImageIndex = folder.Node.ImageIndex = icons.GetIcon(path);
             return folder;
         }
 
@@ -117,7 +123,7 @@ namespace TrackFolderChanges
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            UpdateTree(Environment.GetEnvironmentVariable("SystemDrive"));
+            TryUpdateTree(Environment.GetEnvironmentVariable("SystemDrive"));
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -127,21 +133,26 @@ namespace TrackFolderChanges
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            UpdateTree(rootFolder);
+            TryUpdateTree(rootFolder);
         }
 
         private void edtFolder_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                try
-                {
-                    UpdateTree(edtFolder.Text);
-                }
-                catch (Exception ex)
-                {
-                    Program.ReportError(this, ex);
-                }
+                TryUpdateTree(edtFolder.Text);
+            }
+        }
+
+        private void TryUpdateTree(string path)
+        {
+            try
+            {
+                UpdateTree(path);
+            }
+            catch (Exception ex)
+            {
+                Program.ReportError(this, ex);
             }
         }
 
