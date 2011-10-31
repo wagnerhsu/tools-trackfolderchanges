@@ -17,5 +17,16 @@ namespace TrackFolderChanges
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
         }
+
+
+        public static void ReportError(IWin32Window owner, string text)
+        {
+            MessageBox.Show(owner, text, "Track folder changes", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        public static void ReportError(IWin32Window owner, Exception exception)
+        {
+            ReportError(owner, exception.Message);
+        }
+
     }
 }
