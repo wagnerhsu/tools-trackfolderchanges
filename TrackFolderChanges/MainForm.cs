@@ -42,7 +42,7 @@ namespace TrackFolderChanges
 
             if (rootFolder.Length == 2 && rootFolder[1] == ':') rootFolder += '\\';
             rootFolder = Path.GetFullPath(rootFolder);
-            if (rootFolder.Length > 3) rootFolder = rootFolder.Trim('\\');
+            if (rootFolder.Length > 3) rootFolder = rootFolder.TrimEnd('\\');
             rootFolder = char.ToUpper(rootFolder[0]) + rootFolder.Substring(1);
 
             this.rootFolder = rootFolder;
