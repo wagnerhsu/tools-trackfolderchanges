@@ -89,6 +89,7 @@
             // btnBrowse
             // 
             this.btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBrowse.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnBrowse.Location = new System.Drawing.Point(547, 18);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(32, 23);
@@ -147,6 +148,7 @@
             // 
             // btnAbout
             // 
+            this.btnAbout.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnAbout.Location = new System.Drawing.Point(10, 7);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(75, 23);
