@@ -13,7 +13,7 @@ del "%zip%"
 
 cd TrackFolderChanges\bin\Release
 
-%Apps%\7-Zip\7z.exe a "%zip%" *.dll *.exe *.config -aoa
+%Apps%\7-Zip\7z.exe a "%zip%" TrackFolderChanges.exe TrackFolderChanges.exe.config -aoa
 
 
 
