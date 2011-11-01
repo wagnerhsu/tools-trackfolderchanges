@@ -34,7 +34,7 @@
             this.edtFolder = new System.Windows.Forms.ComboBox();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.treeView = new System.Windows.Forms.TreeView();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -101,14 +101,14 @@
             // 
             this.folderBrowserDialog.ShowNewFolderButton = false;
             // 
-            // treeView1
+            // treeView
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Location = new System.Drawing.Point(0, 66);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(605, 336);
-            this.treeView1.TabIndex = 0;
-            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
+            this.treeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView.Location = new System.Drawing.Point(0, 66);
+            this.treeView.Name = "treeView";
+            this.treeView.Size = new System.Drawing.Size(605, 336);
+            this.treeView.TabIndex = 0;
+            this.treeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_NodeMouseClick);
             // 
             // btnClose
             // 
@@ -201,7 +201,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(605, 441);
-            this.Controls.Add(this.treeView1);
+            this.Controls.Add(this.treeView);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -228,7 +228,7 @@
         private System.Windows.Forms.ComboBox edtFolder;
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView treeView;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnClose;

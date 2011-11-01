@@ -17,7 +17,7 @@ namespace TrackFolderChanges
         {
             InitializeComponent();
             icons = new IconsHandler(true, false);
-            treeView1.ImageList = icons.SmallIcons;
+            treeView.ImageList = icons.SmallIcons;
 
             WindowPosition.InitWindowLocation(Program.ReadSetting("WindowPosition", null), this);
         }
@@ -52,20 +52,20 @@ namespace TrackFolderChanges
             fileSystemWatcher.Path = rootFolder;
             fileSystemWatcher.NotifyFilter = NotifyFilters.Attributes | NotifyFilters.CreationTime | NotifyFilters.DirectoryName | NotifyFilters.FileName | NotifyFilters.LastWrite | NotifyFilters.Security | NotifyFilters.Size;
            
-            treeView1.Nodes.Clear();
+            treeView.Nodes.Clear();
 
             var folder = CreateNode(rootFolder).Node;
-            treeView1.Nodes.Add(folder);
+            treeView.Nodes.Add(folder);
             fileSystemWatcher.EnableRaisingEvents = true;
 
             Program.WriteSetting("LastFolder", rootFolder);
-            treeView1.Focus();
+            treeView.Focus();
         }
 
 
         private ChangedFolder CreateNode(string path)
         {
-            var oldTopNode = treeView1.TopNode;
+            var oldTopNode = treeView.TopNode;
             var name = Path.GetFileName(path);
             if (path.Equals(rootFolder, StringComparison.CurrentCultureIgnoreCase))
                 name = path;
@@ -73,7 +73,7 @@ namespace TrackFolderChanges
             nodes[path.ToLower()] = folder;
             folder.Node.ExpandAll();
             folder.Node.SelectedImageIndex = folder.Node.ImageIndex = icons.GetIcon(path);
-            treeView1.TopNode = oldTopNode;
+            treeView.TopNode = oldTopNode;
             return folder;
         }
 
@@ -88,7 +88,7 @@ namespace TrackFolderChanges
         {
             ChangedFolder folder;
             var lowerCaseName = Path.GetFullPath(path).ToLower();
-            if (lowerCaseName == rootFolder.ToLower()) return (ChangedFolder)treeView1.Nodes[0].Tag;
+            if (lowerCaseName == rootFolder.ToLower()) return (ChangedFolder)treeView.Nodes[0].Tag;
             if (!nodes.TryGetValue(lowerCaseName, out folder))
             {
                 var parentNode = GetOrCreateNode(Path.GetDirectoryName(path), WatcherChangeTypes.Changed);
@@ -198,14 +198,14 @@ namespace TrackFolderChanges
             }
         }
 
-        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        private void treeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             if (e.Button == MouseButtons.Right && e.Node != null)
             {
-                treeView1.SelectedNode = e.Node;
+                treeView.SelectedNode = e.Node;
                 cmdOpen.Enabled = File.Exists(SelectedFolder.Path) || Directory.Exists(SelectedFolder.Path);
                 cmdOpenLocation.Enabled = Directory.GetParent(SelectedFolder.Path).Exists;
-                contextMenu1.Show(treeView1, e.Location);
+                contextMenu1.Show(treeView, e.Location);
             }
         }
 
@@ -236,8 +236,8 @@ namespace TrackFolderChanges
         {
             get
             {
-                if (treeView1.SelectedNode == null) return null;
-                return (ChangedFolder)treeView1.SelectedNode.Tag;
+                if (treeView.SelectedNode == null) return null;
+                return (ChangedFolder)treeView.SelectedNode.Tag;
             }
         }
 
