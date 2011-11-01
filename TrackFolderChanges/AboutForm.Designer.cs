@@ -54,9 +54,9 @@
             this.lblProductName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.lblProductName.Location = new System.Drawing.Point(91, 38);
             this.lblProductName.Name = "lblProductName";
-            this.lblProductName.Size = new System.Drawing.Size(141, 15);
+            this.lblProductName.Size = new System.Drawing.Size(143, 15);
             this.lblProductName.TabIndex = 1;
-            this.lblProductName.Text = "Track folder changes {0}";
+            this.lblProductName.Text = "Track Folder Changes {0}";
             // 
             // lblCopyright
             // 
