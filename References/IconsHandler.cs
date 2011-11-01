@@ -130,24 +130,30 @@ namespace Antiufo
         private static Image GetIcon(string path, bool large, bool realFile)
         {
             var shinfo = new SHFILEINFO();
-            var flags = SHGFI_ICON;
-            flags |= large ? SHGFI_LARGEICON : SHGFI_SMALLICON;
-            if (!realFile) flags |= SHGFI_USEFILEATTRIBUTES;
-
-            var isProbablyFolder = !realFile && string.IsNullOrEmpty(Path.GetExtension(path));
-
-            IntPtr hImg;
-            hImg = SHGetFileInfo(path, isProbablyFolder ? FILE_ATTRIBUTE_DIRECTORY : 0, ref shinfo, Marshal.SizeOf(shinfo), flags);
-
-            if (realFile && hImg == IntPtr.Zero)
+            try
             {
-                return GetIcon(path, large, false);
-            }
+                uint flags = SHGFI_ICON;
+                flags |= large ? SHGFI_LARGEICON : SHGFI_SMALLICON;
+                if (!realFile) flags |= SHGFI_USEFILEATTRIBUTES;
 
-            var icon = System.Drawing.Icon.FromHandle(shinfo.hIcon);
-            var image = icon.ToBitmap();
-            DestroyIcon(shinfo.hIcon);
-            return image;
+                var isProbablyFolder = !realFile && string.IsNullOrEmpty(Path.GetExtension(path));
+
+                IntPtr hImg;
+                hImg = SHGetFileInfo(path, isProbablyFolder ? FILE_ATTRIBUTE_DIRECTORY : 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), flags);
+
+                if (realFile && hImg == IntPtr.Zero)
+                {
+                    return GetIcon(path, large, false);
+                }
+
+                var icon = System.Drawing.Icon.FromHandle(shinfo.hIcon);
+                return icon.ToBitmap();
+            }
+            finally
+            {
+                if (shinfo.hIcon != IntPtr.Zero)
+                    DestroyIcon(shinfo.hIcon);
+            }
         }
 
         public static Image GetIcon(string path, bool large)
@@ -163,33 +169,29 @@ namespace Antiufo
         private static extern bool DestroyIcon(IntPtr hIcon);
 
         [DllImport("shell32.dll", CharSet = CharSet.Auto)]
-        private static extern IntPtr SHGetFileInfo(string pszPath, int dwFileAttributes, ref SHFILEINFO psfi, int cbFileInfo, int uFlags);
+        public static extern IntPtr SHGetFileInfo(string pszPath, uint dwFileAttributes, ref SHFILEINFO psfi, uint cbFileInfo, uint uFlags);
 
-        private struct SHFILEINFO
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+        public struct SHFILEINFO
         {
-
             public IntPtr hIcon;
-
             public int iIcon;
-
-            public int dwAttributes;
-
+            public uint dwAttributes;
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
             public string szDisplayName;
-
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)]
             public string szTypeName;
-        }
+        };
 
-        private const int SHGFI_ICON = 0x100;
-        private const int SHGFI_SMALLICON = 0x1;
-        private const int SHGFI_LARGEICON = 0x0;
-        private const int SHGFI_USEFILEATTRIBUTES = 0x10;
-        private const int SHGFI_SYSICONINDEX = 0x4000;
-        private const int SHGFI_PIDL = 0x8;
-        private const int SHGFI_OPENICON = 0x2;
+        private const uint SHGFI_ICON = 0x100;
+        private const uint SHGFI_SMALLICON = 0x1;
+        private const uint SHGFI_LARGEICON = 0x0;
+        private const uint SHGFI_USEFILEATTRIBUTES = 0x10;
+        private const uint SHGFI_SYSICONINDEX = 0x4000;
+        private const uint SHGFI_PIDL = 0x8;
+        private const uint SHGFI_OPENICON = 0x2;
 
-        private const int FILE_ATTRIBUTE_DIRECTORY = 0x10;
+        private const uint FILE_ATTRIBUTE_DIRECTORY = 0x10;
 
 
         public void Dispose()
