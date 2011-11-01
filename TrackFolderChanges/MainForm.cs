@@ -51,8 +51,11 @@ namespace TrackFolderChanges
 
             fileSystemWatcher.Path = rootFolder;
             fileSystemWatcher.NotifyFilter = NotifyFilters.Attributes | NotifyFilters.CreationTime | NotifyFilters.DirectoryName | NotifyFilters.FileName | NotifyFilters.LastWrite | NotifyFilters.Security | NotifyFilters.Size;
+           
             treeView1.Nodes.Clear();
-            treeView1.Nodes.Add(CreateNode(rootFolder).Node);
+
+            var folder = CreateNode(rootFolder).Node;
+            treeView1.Nodes.Add(folder);
             fileSystemWatcher.EnableRaisingEvents = true;
 
             Program.WriteSetting("LastFolder", rootFolder);
