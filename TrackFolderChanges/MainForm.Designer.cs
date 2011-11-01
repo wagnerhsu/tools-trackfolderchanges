@@ -53,6 +53,7 @@
             // 
             // fileSystemWatcher
             // 
+            this.fileSystemWatcher.EnableRaisingEvents = true;
             this.fileSystemWatcher.IncludeSubdirectories = true;
             this.fileSystemWatcher.SynchronizingObject = this;
             this.fileSystemWatcher.Changed += new System.IO.FileSystemEventHandler(this.fileSystemWatcher_Changed);
@@ -106,7 +107,7 @@
             this.treeView1.Location = new System.Drawing.Point(0, 66);
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(605, 336);
-            this.treeView1.TabIndex = 1;
+            this.treeView1.TabIndex = 0;
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
             // btnClose
@@ -116,7 +117,7 @@
             this.btnClose.Location = new System.Drawing.Point(523, 6);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 24);
-            this.btnClose.TabIndex = 1;
+            this.btnClose.TabIndex = 2;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -128,7 +129,7 @@
             this.btnClear.Location = new System.Drawing.Point(442, 6);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 24);
-            this.btnClear.TabIndex = 0;
+            this.btnClear.TabIndex = 1;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
@@ -142,14 +143,14 @@
             this.panel1.Location = new System.Drawing.Point(0, 402);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(605, 39);
-            this.panel1.TabIndex = 4;
+            this.panel1.TabIndex = 1;
             // 
             // btnAbout
             // 
             this.btnAbout.Location = new System.Drawing.Point(10, 7);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(75, 23);
-            this.btnAbout.TabIndex = 2;
+            this.btnAbout.TabIndex = 0;
             this.btnAbout.Text = "About...";
             this.btnAbout.UseVisualStyleBackColor = true;
             this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
@@ -162,7 +163,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(10, 5, 10, 10);
             this.panel2.Size = new System.Drawing.Size(605, 66);
-            this.panel2.TabIndex = 0;
+            this.panel2.TabIndex = 2;
             // 
             // contextMenu1
             // 
