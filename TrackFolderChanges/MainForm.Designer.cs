@@ -209,7 +209,7 @@
             this.KeyPreview = true;
             this.MinimumSize = new System.Drawing.Size(290, 38);
             this.Name = "MainForm";
-            this.Text = "Track folder changes";
+            this.Text = "Track Folder Changes";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);

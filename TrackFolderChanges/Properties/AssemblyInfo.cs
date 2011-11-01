@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TrackFolderChanges")]
+[assembly: AssemblyTitle("Track Folder Changes")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Andrea Martinelli")]
-[assembly: AssemblyProduct("TrackFolderChanges")]
+[assembly: AssemblyProduct("Track Folder Changes")]
 [assembly: AssemblyCopyright("Copyright © Andrea Martinelli 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
