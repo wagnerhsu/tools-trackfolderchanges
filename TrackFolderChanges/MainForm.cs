@@ -51,10 +51,11 @@ namespace TrackFolderChanges
 
             fileSystemWatcher.Path = rootFolder;
             fileSystemWatcher.NotifyFilter = NotifyFilters.Attributes | NotifyFilters.CreationTime | NotifyFilters.DirectoryName | NotifyFilters.FileName | NotifyFilters.LastWrite | NotifyFilters.Security | NotifyFilters.Size;
-           
+
             treeView.Nodes.Clear();
 
             var folder = CreateNode(rootFolder).Node;
+            folder.Tag = new ChangedFolder(rootFolder, folder);
             treeView.Nodes.Add(folder);
             fileSystemWatcher.EnableRaisingEvents = true;
 
@@ -204,7 +205,8 @@ namespace TrackFolderChanges
             {
                 treeView.SelectedNode = e.Node;
                 cmdOpen.Enabled = File.Exists(SelectedFolder.Path) || Directory.Exists(SelectedFolder.Path);
-                cmdOpenLocation.Enabled = Directory.GetParent(SelectedFolder.Path).Exists;
+                var parent = Directory.GetParent(SelectedFolder.Path);
+                cmdOpenLocation.Enabled = parent != null && parent.Exists;
                 contextMenu1.Show(treeView, e.Location);
             }
         }
