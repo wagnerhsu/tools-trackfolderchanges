@@ -1,18 +1,16 @@
-﻿using System;
+﻿using Antiufo;
+using NLog;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.IO;
-using Antiufo;
+using System.Windows.Forms;
 
 namespace TrackFolderChanges
 {
     public partial class MainForm : Form
     {
+        private static ILogger Logger = LogManager.GetCurrentClassLogger();
+
         public MainForm()
         {
             InitializeComponent();
@@ -22,7 +20,7 @@ namespace TrackFolderChanges
             WindowPosition.InitWindowLocation(Program.ReadSetting("WindowPosition", null), this);
         }
 
-        IconsHandler icons;
+        private IconsHandler icons;
 
         private void btnBrowse_Click(object sender, EventArgs e)
         {
@@ -32,7 +30,6 @@ namespace TrackFolderChanges
                 TryUpdateTree(folderBrowserDialog.SelectedPath);
             }
         }
-
 
         private void UpdateTree(string rootFolder)
         {
@@ -63,7 +60,6 @@ namespace TrackFolderChanges
             treeView.Focus();
         }
 
-
         private ChangedFolder CreateNode(string path)
         {
             var oldTopNode = treeView.TopNode;
@@ -78,15 +74,12 @@ namespace TrackFolderChanges
             return folder;
         }
 
-
         private Dictionary<string, ChangedFolder> nodes;
         private string rootFolder;
 
-
-
-
         private ChangedFolder GetOrCreateNode(string path, WatcherChangeTypes changeType)
         {
+            Logger.Debug($"{changeType}:{path}");
             ChangedFolder folder;
             var lowerCaseName = Path.GetFullPath(path).ToLower();
             if (lowerCaseName == rootFolder.ToLower()) return (ChangedFolder)treeView.Nodes[0].Tag;
@@ -106,9 +99,6 @@ namespace TrackFolderChanges
             }
             return folder;
         }
-
-
-
 
         private void fileSystemWatcher_Changed(object sender, FileSystemEventArgs e)
         {
@@ -133,12 +123,10 @@ namespace TrackFolderChanges
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
             var defaultFolder = Environment.GetEnvironmentVariable("SystemDrive");
             var folder = Program.ReadSetting("LastFolder", defaultFolder);
             if (Directory.Exists(folder)) TryUpdateTree(folder);
             else TryUpdateTree(defaultFolder);
-
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -182,7 +170,6 @@ namespace TrackFolderChanges
                 Shell.OpenFolderAndSelectItem(folder.Path);
             }
         }
-
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
@@ -253,9 +240,5 @@ namespace TrackFolderChanges
         {
             Program.WriteSetting("WindowPosition", WindowPosition.SerializePosition(this));
         }
-
-
-
     }
-
 }
